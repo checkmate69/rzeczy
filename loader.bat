@@ -1,14 +1,14 @@
 @echo off
-color 6
+color 5
 Mode 40,15
 
 cls
-title Delete Logs
-echo Delete Logs
+title NSudo
+echo NSudo
 echo.
 
 echo Running NSudo...
-curl -g -k -L -# -o "%temp%\NSudo.exe" "https://github.com/UnLovedCookie/EchoX/raw/main/Files/NSudo.exe" >nul 2>&1
+curl -g -k -L -# -o "%temp%\NSudo.exe" "https://github.com/checkmate69/Rzeczy/raw/main/NSudo.exe" >nul 2>&1
 if not exist "%temp%\NSudo.exe" (
     echo Failed to download NSudo.
     pause>nul
