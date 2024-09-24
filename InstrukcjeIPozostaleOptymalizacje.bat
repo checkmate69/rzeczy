@@ -1,4 +1,4 @@
-color 4
+color 5
 @echo off
 SETLOCAL ENABLEDELAYEDEXPANSION
 
