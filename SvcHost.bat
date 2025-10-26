@@ -106,6 +106,8 @@ del %0
 cls
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control" /v SvcHostSplitThresholdInKB /t REG_DWORD /d 67108864 /f
 echo.
+echo.
+echo Success!
 pause>nul
 cls
 del %0
