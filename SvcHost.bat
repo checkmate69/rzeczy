@@ -1,7 +1,8 @@
-color 6
+
 
 
 @echo off
+color 0D
 SETLOCAL DISABLEDELAYEDEXTENSIONS
 
 
