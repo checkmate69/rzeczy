@@ -1,0 +1,46 @@
+@echo off
+SETLOCAL ENABLEDELAYEDEXPANSION
+color 0D
+mode 100,15
+
+:: sprawdzenie uprawnien administratora
+>nul 2>&1 net session
+if %errorlevel% neq 0 (
+  echo This script requires administrative rights. Run it as Administrator.
+  pause
+  exit /b
+)
+
+echo ==============================
+echo Set CPU priority class in registry
+echo Leave empty and press Enter to finish
+echo ==============================
+echo.
+
+:LOOP
+set /p proc=Enter process name (example: javaw.exe): 
+if "%proc%"=="" goto DONE
+
+:: usun ewentualne otaczajace spacje
+for /f "tokens=* delims= " %%Z in ("%proc%") do set "proc=%%Z"
+
+:: dodaj .exe jesli uzytkownik o nim zapomnial
+set "last=%proc:~-4%"
+if /I "%last%" neq ".exe" set "proc=%proc%.exe"
+
+echo Adding registry entry for: "%proc%"
+
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%proc%\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d 3 /f
+if %errorlevel% equ 0 (
+  echo OK: %proc% -> CpuPriorityClass = 3
+) else (
+  echo FAILED to add %proc%
+)
+
+echo.
+goto LOOP
+
+:DONE
+echo All done.
+pause
+exit /b
